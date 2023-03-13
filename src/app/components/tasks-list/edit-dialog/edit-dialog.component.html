@@ -1,0 +1,47 @@
+<form [formGroup]="editTask" (submit)="onSubmit()">
+<h1 mat-dialog-title>{{task.taskName}}</h1>
+<div mat-dialog-content>
+  <div class="container m-1">
+
+    <div class="row">
+
+
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+
+        <mat-label>Date</mat-label>
+        <input formControlName="date" matInput [matDatepicker]="picker" [min]="minDate" required>
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Task Name</mat-label>
+        <input formControlName="taskName" matInput placeholder="Ex. Solve puzzles" required>
+      </mat-form-field>
+    </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status" required>
+            <mat-option value="active">Active</mat-option>
+            <mat-option value="inactive">Inactive</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Close</button>
+  <button mat-button cdkFocusInitial type="submit"  [disabled]="editTask.invalid">Save</button>
+</div>
+</form>

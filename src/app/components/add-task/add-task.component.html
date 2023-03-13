@@ -1,0 +1,41 @@
+<div class="container">
+  <form [formGroup]="addTask" (submit)="onSubmit()">
+  <div class="row">
+
+    <div class="col-md-3">
+<!--      Date Picker-->
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Choose a date</mat-label>
+        <input formControlName="date" matInput [matDatepicker]="picker" [min]="minDate" (keypress)="numberOnly($event)">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-error>Please select a date</mat-error>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-md-4">
+<!--      Task Name-->
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Task Name</mat-label>
+          <input formControlName="taskName" matInput placeholder="Ex. Solve puzzles" required>
+          <mat-error>Please provide a task</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="col-md-3">
+<!--      Status-->
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+          <mat-option value="active">Active</mat-option>
+          <mat-option value="inactive">Inactive</mat-option>
+        </mat-select>
+        <mat-error>Please select task status</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-md-2">
+<!--      Add task  button - action-->
+      <button type="submit" [disabled]="addTask.invalid || !checkForm()" mat-flat-button color="primary" class="add-task-btn w-100">Add Task</button>
+    </div>
+  </div>
+  </form>
+</div>
